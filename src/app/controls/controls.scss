@@ -1,0 +1,52 @@
+.controls {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin: 16px auto;
+}
+
+button {
+  padding: 8px 16px;
+  font-size: 1rem;
+  background: #d1c4e9;
+  color: #311b92;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: #b39ddb;
+}
+
+// Ajout d'un indicateur de manette connectée
+.gamepad-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  color: #666;
+  margin-top: 8px;
+
+  &.connected {
+    color: #4caf50;
+  }
+
+  .indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ccc;
+  }
+
+  &.connected .indicator {
+    background: #4caf50;
+    animation: pulse 2s infinite;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}

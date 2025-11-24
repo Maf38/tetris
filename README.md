@@ -54,6 +54,30 @@ ng e2e
 
 Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
+## Dépannage : ng serve
+
+Si tu obtiens l'erreur :
+
+```
+Error: This command is not available when running the Angular CLI outside a workspace.
+```
+
+Cela signifie que tu n'es pas dans le dossier racine du projet Angular.
+
+**Solution :**
+1. Ouvre un terminal.
+2. Place-toi dans le dossier du projet Angular (là où il y a `angular.json`), par exemple :
+   ```bash
+   cd c:\Workspace\workspace-tuto\tetris\tetris
+   ```
+3. Lance la commande :
+   ```bash
+   ng serve
+   ```
+
+**Astuce :**  
+La commande `ng serve` ne fonctionne que dans le dossier où le projet Angular a été créé (présence de `angular.json`).
+
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
