@@ -1,0 +1,19 @@
+.cell {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+
+  &.filled {
+    border-color: #333;
+  }
+
+  &.ghost {
+    opacity: 0.3;
+  }
+
+  &.active {
+    border-color: #000;
+    border-width: 2px;
+  }
+}

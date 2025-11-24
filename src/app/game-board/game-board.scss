@@ -1,14 +1,15 @@
 .game-board {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  background: #fafafa;
-  border: 2px solid #673ab7;
-  margin: 24px auto;
-  width: fit-content;
+  display: inline-block;
+  background: #333;
+  padding: 4px;
+  border-radius: 4px;
 }
 
 .row {
   display: flex;
-  gap: 2px;
+  gap: 1px;
+
+  &:not(:last-child) {
+    margin-bottom: 1px;
+  }
 }
