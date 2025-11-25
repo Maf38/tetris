@@ -1,5 +1,12 @@
 <app-menu></app-menu>
-<app-score-board [score] = 1234></app-score-board>
-<app-next-piece></app-next-piece>
+<app-score-board 
+    [score] = "game.score"
+    [level]="game.level"
+    [lines]="game.lines"
+></app-score-board>
+<app-next-piece [nextPiece]="nextPiece"></app-next-piece>
 <app-game-board></app-game-board>
+<button (click)="game.addScore(10)">+10 Score</button>
+<button (click)="game.addLine()">+1 Line</button>
+<button (click)="game.resetGame()">Reset</button>
 <app-controls></app-controls>

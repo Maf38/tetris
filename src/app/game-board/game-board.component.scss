@@ -13,3 +13,21 @@
     margin-bottom: 1px;
   }
 }
+
+@keyframes flash {
+  0%, 100% { background: #fff; }
+  50% { background: #ffeb3b; }
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.line.completed {
+  animation: flash 0.3s, fadeOut 0.5s 0.3s forwards;
+}
+
+.row.completed {
+  animation: flash 0.3s, fadeOut 0.5s 0.3s forwards;
+}

@@ -31,3 +31,26 @@
 .menu-items li a:hover {
   color: #311b92;
 }
+
+.menu-actions {
+  display: flex;
+  gap: 12px;
+  margin-left: 32px; 
+}
+
+.menu-actions button {
+  background: #673ab7;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 18px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.menu-actions button:hover {
+  background: #311b92;
+}
+

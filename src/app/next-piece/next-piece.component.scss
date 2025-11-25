@@ -1,11 +1,15 @@
-.next-piece {
-  background: #fffde7;
-  color: #fbc02d;
-  padding: 16px;
-  border-radius: 8px;
-  font-size: 1.1rem;
-  text-align: center;
-  margin: 16px auto;
-  width: 160px;
-  box-shadow: 0 2px 8px rgba(251, 192, 45, 0.08);
+.next-piece-grid {
+  display: grid;
+  grid-template-rows: repeat(4, 20px);
+  grid-template-columns: repeat(4, 20px);
+  gap: 2px;
+}
+.cell {
+  width: 20px;
+  height: 20px;
+  background: #eee;
+  border: 1px solid #ccc;
+}
+.cell.filled {
+  background: #673ab7;
 }

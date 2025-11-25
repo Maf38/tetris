@@ -1,15 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-menu',
-  imports: [],
+  standalone: true,
   templateUrl: './menu.component.html',
-  styleUrl: './menu.component.scss',
+  styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent {
+  @Output() pauseGame = new EventEmitter<void>();
+  @Output() restartGame = new EventEmitter<void>();
 
-  startGame() {
-
-    console.log('Jeu démarré !');
+  onPause() {
+    this.pauseGame.emit();
   }
+
+  onRestart() {
+    this.restartGame.emit();
+}
 }
