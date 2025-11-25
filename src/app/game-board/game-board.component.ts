@@ -7,8 +7,8 @@ import { CellComponent } from '../cell/cell.component';
   selector: 'app-game-board',
   standalone: true,
   imports: [CommonModule, CellComponent],
-  templateUrl: './game-board.html',
-  styleUrl: './game-board.scss'
+  templateUrl: './game-board.component.html',
+  styleUrl: './game-board.component.scss'
 })
 export class GameBoardComponent {
   readonly rows = 20;

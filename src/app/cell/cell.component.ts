@@ -6,7 +6,7 @@ import { CellModel } from '../../models/cell.model';
   standalone: true,
   imports: [],
   templateUrl: './cell.component.html',
-  styleUrl: './cell.component.scss'
+  styleUrls: ['./cell.component.scss']
 })
 export class CellComponent {
   @Input() cell!: CellModel;

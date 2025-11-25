@@ -1,14 +1,22 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, signal } from '@angular/core';
+import { MenuComponent } from './menu/menu.component'; 
+import { ScoreBoardComponent } from './score-board/score-board.component';
+import { NextPieceComponent } from './next-piece/next-piece.component';
 import { GameBoardComponent } from './game-board/game-board.component';
+import { ControlsComponent } from './controls/controls.component';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, GameBoardComponent],
+  imports: [
+    MenuComponent,
+    ScoreBoardComponent,
+    NextPieceComponent,
+    GameBoardComponent,
+    ControlsComponent
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'tetris';
+  protected readonly title = signal('tetris');
 }
