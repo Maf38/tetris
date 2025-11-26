@@ -1,8 +1,8 @@
 <app-menu></app-menu>
 <app-score-board 
-    [score] = "game.score"
-    [level]="game.level"
-    [lines]="game.lines"
+    [score] = "game.score()"
+    [level]="game.level()"
+    [lines]="game.lines()"
 ></app-score-board>
 <app-next-piece [nextPiece]="nextPiece"></app-next-piece>
 <app-game-board></app-game-board>
