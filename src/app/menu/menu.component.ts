@@ -9,6 +9,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 export class MenuComponent {
   @Output() pauseGame = new EventEmitter<void>();
   @Output() restartGame = new EventEmitter<void>();
+  @Output() startGame = new EventEmitter<void>();
 
   onPause() {
     this.pauseGame.emit();
@@ -16,5 +17,9 @@ export class MenuComponent {
 
   onRestart() {
     this.restartGame.emit();
-}
+  }
+
+  onStart() {
+    this.startGame.emit();
+  }
 }

@@ -3,7 +3,7 @@ import { Piece } from '../../models/piece.model';
 import { CellModel } from '../../models/cell.model';
 import { TETROMINOS } from '../../models/tetromino-shapes';
 import { TETROMINO_COLORS } from '../../models/tetromino-colors'; 
-
+import { SCORE_TABLE } from '../../models/score-table';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +20,9 @@ export class Game {
   gameOver = signal(false);
   private gameInterval: any = null;
 
+
+
+  
   resetGame() {
     this.score.set(0);
     this.level.set(0);
@@ -103,7 +106,7 @@ export class Game {
             newX >= cols ||
             newY < 0 ||
             newY >= rows ||
-            (board[newY] && board[newY][newX] && board[newY][newX].filled)
+            (board[newY]?.[newX]?.filled)
           ) {
             return false;
           }
@@ -140,7 +143,7 @@ export class Game {
         if (piece.shape[i][j]) {
           const x = piece.x + j;
           const y = piece.y + i;
-          if (board[y] && board[y][x]) {
+          if (board[y]?.[x]) {
             board[y][x] = {
               x,
               y,
@@ -162,20 +165,61 @@ export class Game {
     }
   }
 
+  clearLines(): number {
+    let linesCleared = 0;
+    const board = this.board();
+    const newBoard = board.map(row => [...row]);
+
+    for(let i = newBoard.length -1; i>=0; i--){
+      if(newBoard[i].every(cell => cell.filled)){
+        newBoard.splice(i,1); // supprime la ligne
+        linesCleared++;
+        newBoard.unshift(Array.from({ length: newBoard[0].length }, (_, x) => ({
+          x,
+          y: 0, 
+          filled: false,
+          color: null
+        })));// Rajoute une ligne vide en haut
+      }
+    }
+    this.board.set(newBoard);
+    this.lines.update(l => l + linesCleared);
+
+    return linesCleared;
+  }
+
+  updateScore(linesCleared: number): void {
+    const points = SCORE_TABLE[linesCleared] || 0;
+    this.score.update(s => s + points);
+  }
+
+  updateLevel(): void {
+    const totalLines =  this.lines();
+    const newLevel = Math.floor(totalLines / 10) + 1;
+    this.level.set(newLevel);
+  }
+
+  checkGameOver(): boolean {
+    const piece = this.currentPiece();
+    if (!piece) return false;
+    // Vérifie si la position initiale de la pièce est valide
+    return !this.isValidPosition(piece.x, piece.y, piece.shape);
+  }
+
   getGameSpeed(): number {
     // Par exemple, vitesse de base 800ms, accélérée selon le niveau
     return Math.max(100, 800 - this.level() * 50);
   }
 
   gameLoop() {
-  if (this.gameInterval) {
-    clearInterval(this.gameInterval);
-  }
-  this.gameInterval = setInterval(() => {
-    if (!this.isPaused() && !this.gameOver()) {
-      this.movePieceDown();
+    if (this.gameInterval) {
+      clearInterval(this.gameInterval);
     }
-  }, this.getGameSpeed());
+    this.gameInterval = setInterval(() => {
+      if (!this.isPaused() && !this.gameOver()) {
+        this.movePieceDown();
+      }
+    }, this.getGameSpeed());
   }
   
 }

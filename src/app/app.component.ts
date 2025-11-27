@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, HostListener} from '@angular/core';
 import { MenuComponent } from './menu/menu.component'; 
 import { ScoreBoardComponent } from './score-board/score-board.component';
 import { NextPieceComponent } from './next-piece/next-piece.component';
@@ -36,16 +36,63 @@ function getRandomPiece(): Piece {
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
+export class AppComponent  {
 
-export class AppComponent {
-
+  private intervalId: any = null;
   constructor(public game: Game) {}
   protected readonly title = signal('tetris');
+
+  startGame() {
+    this.game.resetGame();
+    this.game.spawnPiece();
+    this.startLoop();
+  }
+
+  startLoop() {
+    this.stopLoop(); // au cas où
+    this.intervalId = setInterval(() => {
+      if (!this.game.isPaused() && !this.game.gameOver()) {
+        this.game.movePieceDown();
+      }
+    }, this.game.getGameSpeed());
+  }
+
+  stopLoop() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+      this.intervalId = null;
+    }
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  handleKeyDown(event: KeyboardEvent) {
+    if (this.game.isPaused() || this.game.gameOver()) return;
+    const piece = this.game.currentPiece();
+    if (!piece) return;
+
+    switch (event.key) {
+      case 'ArrowLeft':
+        if (this.game.canMovePiece(-1, 0, piece.shape)) {
+          this.game.currentPiece.set({ ...piece, x: piece.x - 1 });
+        }
+        break;
+      case 'ArrowRight':
+        if (this.game.canMovePiece(1, 0, piece.shape)) {
+          this.game.currentPiece.set({ ...piece, x: piece.x + 1 });
+        }
+        break;
+      case 'ArrowDown':
+        this.game.movePieceDown();
+        break;
+      case 'ArrowUp':
+        // Rotation à implémenter
+        break;
+    }
+  }
 
   nextPiece: Piece = getRandomPiece();
 
   generateNextPiece() {
     this.nextPiece = getRandomPiece();
   }
-
 }
