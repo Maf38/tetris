@@ -1,9 +1,9 @@
 <div class="game-board">
   <div class="row" 
-       *ngFor="let row of board;let i = index">
+       *ngFor="let row of board; let y = index">
     <app-cell 
-      *ngFor="let cell of row"
-      [cell]="cell">
+      *ngFor="let cell of row; let x = index"
+      [cell]="getCellWithPiece(x, y)">
     </app-cell>
   </div>
 </div>

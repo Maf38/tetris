@@ -20,15 +20,39 @@ export class Game {
   gameOver = signal(false);
   private gameInterval: any = null;
 
+  constructor() {
+    console.log('🎮 Game service initialized');
+    this.initBoard();
+  }
+
+  private initBoard() {
+    const rows = 20;
+    const cols = 10;
+    const board = Array.from({ length: rows }, (_, y) =>
+      Array.from({ length: cols }, (_, x) => ({
+        x,
+        y,
+        filled: false,
+        color: null
+      }))
+    );
+    this.board.set(board);
+    console.log('📋 Board initialized:', rows, 'x', cols);
+  }
 
 
-  
+
+
   resetGame() {
+    console.log('🔄 Resetting game...');
+    this.initBoard();
     this.score.set(0);
-    this.level.set(0);
+    this.level.set(1);
     this.lines.set(0);
     this.isPaused.set(false);
     this.gameOver.set(false);
+    this.currentPiece.set(null);
+    console.log('✅ Game reset complete');
   }
 
   addScore(points: number) {
@@ -64,22 +88,25 @@ export class Game {
   }
     
   spawnPiece() {
+    console.log('🎲 Spawning new piece...');
+    // Si c'est la première pièce, génère les deux
+    if (!this.nextPiece()) {
+      this.nextPiece.set(this.generateRandomPiece());
+    }
+    
     // Place la pièce courante
-    this.currentPiece.set(this.nextPiece());
+    const newPiece = this.nextPiece();
+    this.currentPiece.set({
+      ...newPiece!,
+      x: 4,
+      y: 0
+    });
+    
     // Génère la prochaine pièce
     this.nextPiece.set(this.generateRandomPiece());
-    // Repositionne la pièce courante en haut du board
-    const piece = this.currentPiece();
-    if (piece) {
-      this.currentPiece.set({
-        ...piece,
-        x: 4,
-        y: 0,
-        rotation: 0,
-        shape: piece.shape,
-        color: piece.color
-      });
-    }
+    
+    console.log('✨ Current piece:', this.currentPiece());
+    console.log('⏭️  Next piece:', this.nextPiece());
   }
 
   canMovePiece(deltaX: number, deltaY: number, shape: number[][]): boolean {
@@ -88,7 +115,31 @@ export class Game {
     const newX = piece.x + deltaX;
     const newY = piece.y + deltaY;
     return this.isValidPosition(newX, newY, shape);
-  }  
+  }
+  
+  canRotatePiece(shape: number[][]): boolean {
+
+    const piece = this.currentPiece();
+    if (!piece) return false;
+    
+    const rotatedShape = this.rotatePiece(shape);
+    return this.isValidPosition( piece.x, piece.y, rotatedShape);
+  }
+
+  rotatePiece (shape: number[][]): number [][] {
+
+    const cShape = [...shape].map(row => [...row]); // copie profonde
+    const N = shape.length;
+    const rotated: number[][] = Array.from({ length: N }, () =>new Array(N).fill(0))
+
+    for (let i = 0; i < N; i++) {
+      for (let j = 0; j < N; j++) {
+        rotated[j][N - 1 - i] = cShape[i][j];
+      } 
+    };
+ 
+    return  rotated;
+  }
 
   isValidPosition(x: number, y: number, shape: number[][]): boolean {
     const board = this.board();
@@ -118,14 +169,19 @@ export class Game {
 
   movePieceDown(): boolean {
     const piece = this.currentPiece();
-    if (!piece) return false;
+    if (!piece) {
+      console.log('⚠️ No current piece to move');
+      return false;
+    }
 
     // Vérifie si la pièce peut descendre
     if (this.canMovePiece(0, 1, piece.shape)) {
       this.currentPiece.set({ ...piece, y: piece.y + 1 });
+      console.log('⬇️ Piece moved down to y:', piece.y + 1);
       return true;
     } 
     else {
+      console.log('🔒 Piece locked at y:', piece.y);
       this.lockPiece();
       return false;
     }

@@ -43,9 +43,11 @@ export class AppComponent  {
   protected readonly title = signal('tetris');
 
   startGame() {
+    console.log('🎮 START GAME clicked!');
     this.game.resetGame();
     this.game.spawnPiece();
     this.startLoop();
+    console.log('✅ Game started, loop running');
   }
 
   startLoop() {
@@ -66,6 +68,9 @@ export class AppComponent  {
 
   @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent) {
+    if (['ArrowLeft', 'ArrowRight', 'ArrowDown', 'ArrowUp'].includes(event.key)) {
+      event.preventDefault(); // Empêche le scroll lors du déplacement des pièces
+    }
     if (this.game.isPaused() || this.game.gameOver()) return;
     const piece = this.game.currentPiece();
     if (!piece) return;
@@ -85,7 +90,10 @@ export class AppComponent  {
         this.game.movePieceDown();
         break;
       case 'ArrowUp':
-        // Rotation à implémenter
+        if(this.game.canRotatePiece(piece.shape)) {
+          const rotatedShape = this.game.rotatePiece(piece.shape);
+          this.game.currentPiece.set({ ...piece, shape: rotatedShape });
+        }
         break;
     }
   }
