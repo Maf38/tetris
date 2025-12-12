@@ -1,10 +1,12 @@
-<div class="next-piece-grid">
-  <div *ngFor="let row of nextPiece?.shape" class="row">
-    <div *ngFor="let cell of row"
-         class="cell"
-         [ngStyle]="cell 
-           ? {'background': nextPiece?.color, 'border': '1px solid #ccc'} 
-           : {'background': 'transparent', 'border': '1px solid transparent'}">
-    </div>
-  </div>
+<div class="next-piece-grid" *ngIf="nextPiece">
+  @for (row of previewMatrix; track row; let i = $index) {
+    @for (cell of row; track cell; let j = $index) {
+      <div
+        class="cell"
+        [class.filled]="cell"
+        [style.background]="cell ? nextPiece.color : 'transparent'"
+        [style.border]="'1px solid #fff'">
+      </div>
+    }
+  }
 </div>

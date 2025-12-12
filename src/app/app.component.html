@@ -1,10 +1,15 @@
-<app-menu (startGame)="startGame()"></app-menu>
+<app-menu (startGame)="startGame()"
+         (pauseGame)="pauseGame()"
+         (restartGame)="restartGame()"
+></app-menu>
 <app-score-board 
     [score] = "game.score()"
     [level]="game.level()"
     [lines]="game.lines()"
 ></app-score-board>
-<app-next-piece [nextPiece]="nextPiece"></app-next-piece>
+
+<app-next-pieces-preview [nextPieces]="game.nextPieces()"></app-next-pieces-preview>
+
 <app-game-board></app-game-board>
 
 <app-controls></app-controls>

@@ -1,7 +1,8 @@
-import { Component, signal, HostListener} from '@angular/core';
+import { Component, signal,HostListener} from '@angular/core';
 import { MenuComponent } from './menu/menu.component'; 
 import { ScoreBoardComponent } from './score-board/score-board.component';
-import { NextPieceComponent } from './next-piece/next-piece.component';
+// import { NextPieceComponent } from './next-piece/next-piece.component';
+import { NextPiecesPreviewComponent } from './next-pieces-preview/next-pieces-preview.component';
 import { GameBoardComponent } from './game-board/game-board.component';
 import { ControlsComponent } from './controls/controls.component';
 import { Piece } from '../models/piece.model';
@@ -28,7 +29,8 @@ function getRandomPiece(): Piece {
   imports: [
     MenuComponent,
     ScoreBoardComponent,
-    NextPieceComponent,
+    // NextPieceComponent,
+    NextPiecesPreviewComponent,
     GameBoardComponent,
     ControlsComponent
 
@@ -43,28 +45,28 @@ export class AppComponent  {
   protected readonly title = signal('tetris');
 
   startGame() {
+    if(this.game.isStarted()) return; // éviter de relancer si déjà démarré
     console.log('🎮 START GAME clicked!');
     this.game.resetGame();
     this.game.spawnPiece();
-    this.startLoop();
+    this.game.gameLoop();
     console.log('✅ Game started, loop running');
   }
 
-  startLoop() {
-    this.stopLoop(); // au cas où
-    this.intervalId = setInterval(() => {
-      if (!this.game.isPaused() && !this.game.gameOver()) {
-        this.game.movePieceDown();
-      }
-    }, this.game.getGameSpeed());
+  pauseGame() {
+    console.log('⏸️ PAUSE GAME clicked!');
+    this.game.isPaused.set(!this.game.isPaused());
+  
   }
 
-  stopLoop() {
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-      this.intervalId = null;
-    }
+  restartGame() {
+    console.log('🔄 RESTART GAME clicked!');
+    this.game.resetGame();
+    this.game.spawnPiece();
+    this.game.gameLoop();
   }
+
+
 
   @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent) {
@@ -98,9 +100,4 @@ export class AppComponent  {
     }
   }
 
-  nextPiece: Piece = getRandomPiece();
-
-  generateNextPiece() {
-    this.nextPiece = getRandomPiece();
-  }
 }

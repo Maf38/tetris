@@ -1,0 +1,35 @@
+.next-pieces-row {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.preview-grid-4x2 {
+  background: #111;
+  padding: 8px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  box-shadow: 0 2px 8px #0008;
+  width: 84px; /* 4*20px + 3*1px border + padding */
+  height: 44px; /* 2*20px + 1*1px border + padding */
+}
+
+.preview-row {
+  display: flex;
+  gap: 0;
+}
+
+.preview-cell {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #fff;
+  background: transparent;
+  box-sizing: border-box;
+  transition: background 0.2s;
+}
+.preview-cell.filled {
+  /* La couleur de fond est gérée inline */
+}

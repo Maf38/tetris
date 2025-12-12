@@ -1,0 +1,27 @@
+<div class="next-pieces-row">
+  <ng-container *ngFor="let piece of nextPieces; let i = index">
+    <div class="preview-grid-4x2">
+      <ng-container *ngIf="piece">
+        <ng-container *ngFor="let row of piece.shape.slice(0,2); let y = index">
+          <div class="preview-row">
+            <ng-container *ngFor="let cell of row; let x = index">
+              <div class="preview-cell" 
+                   [class.filled]="cell"
+                   [style.background]="cell ? piece.color : 'transparent'">
+              </div>
+            </ng-container>
+          </div>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="!piece">
+        <ng-container *ngFor="let _ of [0,1]">
+          <div class="preview-row">
+            <ng-container *ngFor="let _ of [0,1,2,3]">
+              <div class="preview-cell"></div>
+            </ng-container>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+  </ng-container>
+</div>

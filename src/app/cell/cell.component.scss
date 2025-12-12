@@ -1,11 +1,11 @@
 .cell {
   width: 28px;
   height: 28px;
-  border: 1px solid #ddd;
+  border: 1px solid #fff;
   box-sizing: border-box;
 
   &.filled {
-    border-color: #333;
+    border-color: #fff;
   }
 
   &.ghost {

@@ -8,15 +8,16 @@ import { SCORE_TABLE } from '../../models/score-table';
 @Injectable({
   providedIn: 'root',
 })
-export class Game {
 
+export class Game {
   currentPiece = signal<Piece | null>(null);
-  nextPiece = signal<Piece | null>(null);
+  nextPieces = signal<(Piece | undefined)[]>([undefined, undefined, undefined, undefined]);
   board = signal<CellModel[][]>([]);
   score = signal(0);
   level = signal(1);
   lines = signal(0);
   isPaused = signal(false);
+  isStarted = signal(false);
   gameOver = signal(false);
   private gameInterval: any = null;
 
@@ -51,7 +52,14 @@ export class Game {
     this.lines.set(0);
     this.isPaused.set(false);
     this.gameOver.set(false);
+    this.isStarted.set(false);
     this.currentPiece.set(null);
+    // Initialise la file de 4 pièces
+    const queue: Piece[] = [];
+    for (let i = 0; i < 4; i++) {
+      queue.push(this.generateRandomPiece());
+    }
+    this.nextPieces.set(queue);
     console.log('✅ Game reset complete');
   }
 
@@ -81,32 +89,22 @@ export class Game {
     return {
       x: 4, // position centrale en haut
       y: 0,
-      shape: TETROMINOS[type],
+      shape: TETROMINOS[type], // toujours 4x4
       color: TETROMINO_COLORS[type],
       rotation: 0
     };
   }
     
   spawnPiece() {
-    console.log('🎲 Spawning new piece...');
-    // Si c'est la première pièce, génère les deux
-    if (!this.nextPiece()) {
-      this.nextPiece.set(this.generateRandomPiece());
-    }
-    
-    // Place la pièce courante
-    const newPiece = this.nextPiece();
-    this.currentPiece.set({
-      ...newPiece!,
-      x: 4,
-      y: 0
-    });
-    
-    // Génère la prochaine pièce
-    this.nextPiece.set(this.generateRandomPiece());
-    
+    // Décale la file : la pièce 4 devient la courante, les autres avancent
+    const queue = this.nextPieces();
+    const newCurrent = queue[3];
+    this.currentPiece.set(newCurrent ? { ...newCurrent, x: 4, y: 0 } : null);
+    // Décale la file et ajoute une nouvelle pièce en position 0
+    const newQueue = [this.generateRandomPiece(), queue[0], queue[1], queue[2]];
+    this.nextPieces.set(newQueue);
     console.log('✨ Current piece:', this.currentPiece());
-    console.log('⏭️  Next piece:', this.nextPiece());
+    console.log('⏭️  Next pieces:', this.nextPieces());
   }
 
   canMovePiece(deltaX: number, deltaY: number, shape: number[][]): boolean {
@@ -229,6 +227,7 @@ export class Game {
     for(let i = newBoard.length -1; i>=0; i--){
       if(newBoard[i].every(cell => cell.filled)){
         newBoard.splice(i,1); // supprime la ligne
+        i++; // reste à la même ligne pour la prochaine itération
         linesCleared++;
         newBoard.unshift(Array.from({ length: newBoard[0].length }, (_, x) => ({
           x,
@@ -268,6 +267,7 @@ export class Game {
   }
 
   gameLoop() {
+    this.isStarted.set(true);
     if (this.gameInterval) {
       clearInterval(this.gameInterval);
     }

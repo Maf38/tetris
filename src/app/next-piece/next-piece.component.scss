@@ -2,14 +2,16 @@
   display: grid;
   grid-template-rows: repeat(4, 20px);
   grid-template-columns: repeat(4, 20px);
-  gap: 2px;
+  gap: 0;
 }
 .cell {
   width: 20px;
   height: 20px;
-  background: #eee;
-  border: 1px solid #ccc;
+  background: transparent;
+  border: 1px solid #fff;
+  box-sizing: border-box;
+  transition: background 0.2s;
 }
 .cell.filled {
-  background: #673ab7;
+  border-color: #fff;
 }

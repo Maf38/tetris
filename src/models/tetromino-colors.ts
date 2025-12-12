@@ -1,9 +1,9 @@
-export const TETROMINO_COLORS: Record<string, string> = {
-  I: 'var(--color-i)',
-  O: 'var(--color-o)',
-  T: 'var(--color-t)',
-  S: 'var(--color-s)',
-  Z: 'var(--color-z)',
-  L: 'var(--color-l)',
-  J: 'var(--color-j)',
+export const TETROMINO_COLORS: Record<keyof typeof import('./tetromino-shapes').TETROMINOS, string> = {
+  I: '#00f0f0', // cyan
+  O: '#f0f000', // yellow
+  T: '#a000f0', // purple
+  S: '#00f000', // green
+  Z: '#f00000', // red
+  L: '#f0a000', // orange
+  J: '#0000f0', // blue
 };
