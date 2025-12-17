@@ -1,11 +1,59 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 :root {
-  --color-i: #00ffff;
-  --color-o: #ffff00;
-  --color-t: #800080;
-  --color-s: #00ff00;
-  --color-z: #ff0000;
-  --color-l: #ff8000;
-  --color-j: #0000ff;
+  --color-i: #00fff7;
+  --color-o: #ffe600;
+  --color-t: #d726ff;
+  --color-s: #00ff87;
+  --color-z: #ff206e;
+  --color-l: #ff9400;
+  --color-j: #147df5;
+}
+
+body {
+  background: linear-gradient(135deg, #0a0a0f 0%, #1a0033 25%, #002244 50%, #1a0033 75%, #0a0a0f 100%);
+  background-attachment: fixed;
+  font-family: 'Press Start 2P', 'Share Tech Mono', monospace;
+  color: #fff;
+  min-height: 100vh;
+}
+
+.game-board, .next-piece-grid, .preview-grid-4x2 {
+  background: rgba(20, 20, 30, 0.95);
+  border-radius: 8px;
+  box-shadow: 0 4px 24px #000a;
+}
+
+.score-board, .menu, .controls {
+  background: rgba(30, 30, 40, 0.85);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #0008;
+  color: #fff;
+}
+
+h1, h2, h3, .title, .score-label {
+  font-family: 'Press Start 2P', 'Share Tech Mono', monospace;
+  color: #00fff7;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 8px #000a;
+}
+
+button, .btn {
+  font-family: 'Press Start 2P', 'Share Tech Mono', monospace;
+  background: linear-gradient(90deg, #ff206e 0%, #147df5 100%);
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 6px;
+  padding: 8px 18px;
+  box-shadow: 0 2px 8px #0008;
+  text-shadow: 0 2px 8px #000a;
+  letter-spacing: 1px;
+  transition: background 0.2s, color 0.2s;
+}
+button:hover, .btn:hover {
+  background: linear-gradient(90deg, #00fff7 0%, #d726ff 100%);
+  color: #ffe600;
 }
 
 @media (max-width: 600px) {
