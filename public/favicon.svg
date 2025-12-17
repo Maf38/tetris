@@ -1,0 +1,13 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Lettre T stylisée -->
+  <g id="favicon-T">
+    <!-- Barre horizontale -->
+    <rect x="14" y="10" width="10" height="10" fill="#d726ff" stroke="#000" stroke-width="1"/>
+    <rect x="24" y="10" width="10" height="10" fill="#d726ff" stroke="#000" stroke-width="1"/>
+    <rect x="34" y="10" width="10" height="10" fill="#d726ff" stroke="#000" stroke-width="1"/>
+    <!-- Barre verticale -->
+    <rect x="24" y="20" width="10" height="10" fill="#d726ff" stroke="#000" stroke-width="1"/>
+    <rect x="24" y="30" width="10" height="10" fill="#d726ff" stroke="#000" stroke-width="1"/>
+    <rect x="24" y="40" width="10" height="10" fill="#d726ff" stroke="#000" stroke-width="1"/>
+  </g>
+</svg>

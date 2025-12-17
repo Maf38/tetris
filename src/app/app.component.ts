@@ -26,6 +26,7 @@ function getRandomPiece(): Piece {
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [
     MenuComponent,
     ScoreBoardComponent,

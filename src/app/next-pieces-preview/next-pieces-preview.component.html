@@ -1,27 +1,24 @@
-<div class="next-pieces-row">
+<div class="next-pieces-vertical">
   <ng-container *ngFor="let piece of nextPieces; let i = index">
-    <div class="preview-grid-4x2">
-      <ng-container *ngIf="piece">
-        <ng-container *ngFor="let row of piece.shape.slice(0,2); let y = index">
-          <div class="preview-row">
-            <ng-container *ngFor="let cell of row; let x = index">
-              <div class="preview-cell" 
-                   [class.filled]="cell"
-                   [style.background]="cell ? piece.color : 'transparent'">
-              </div>
-            </ng-container>
-          </div>
+    <div class="preview-piece-container">
+      <div class="preview-grid-transparent">
+        <ng-container *ngIf="piece">
+          <ng-container *ngFor="let row of piece.shape; let y = index">
+            <div class="preview-row">
+              <ng-container *ngFor="let cell of row; let x = index">
+                <div class="preview-cell" 
+                     [class.filled]="cell"
+                     [style.background]="cell ? piece.color : 'transparent'"
+                     [style.border]="cell ? '1px solid rgba(0,0,0,0.3)' : 'none'">
+                </div>
+              </ng-container>
+            </div>
+          </ng-container>
         </ng-container>
-      </ng-container>
-      <ng-container *ngIf="!piece">
-        <ng-container *ngFor="let _ of [0,1]">
-          <div class="preview-row">
-            <ng-container *ngFor="let _ of [0,1,2,3]">
-              <div class="preview-cell"></div>
-            </ng-container>
-          </div>
+        <ng-container *ngIf="!piece">
+          <div class="empty-placeholder">?</div>
         </ng-container>
-      </ng-container>
+      </div>
     </div>
   </ng-container>
 </div>

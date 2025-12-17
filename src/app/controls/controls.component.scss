@@ -2,7 +2,11 @@
   display: flex;
   gap: 12px;
   justify-content: center;
-  margin: 16px auto;
+  margin: 20px auto;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
 }
 
 button {

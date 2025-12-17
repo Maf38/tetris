@@ -1,0 +1,96 @@
+<svg width="280" height="50" viewBox="0 0 280 50" xmlns="http://www.w3.org/2000/svg">
+  <!-- Lettre T -->
+  <g id="letter-T">
+    <!-- Barre horizontale -->
+    <rect x="2" y="2" width="8" height="8" fill="#d726ff" stroke="#000" stroke-width="0.5"/>
+    <rect x="10" y="2" width="8" height="8" fill="#d726ff" stroke="#000" stroke-width="0.5"/>
+    <rect x="18" y="2" width="8" height="8" fill="#d726ff" stroke="#000" stroke-width="0.5"/>
+    <!-- Barre verticale -->
+    <rect x="10" y="10" width="8" height="8" fill="#d726ff" stroke="#000" stroke-width="0.5"/>
+    <rect x="10" y="18" width="8" height="8" fill="#d726ff" stroke="#000" stroke-width="0.5"/>
+    <rect x="10" y="26" width="8" height="8" fill="#d726ff" stroke="#000" stroke-width="0.5"/>
+    <rect x="10" y="34" width="8" height="8" fill="#d726ff" stroke="#000" stroke-width="0.5"/>
+    <rect x="10" y="42" width="8" height="8" fill="#d726ff" stroke="#000" stroke-width="0.5"/>
+  </g>
+  
+  <!-- Lettre E -->
+  <g id="letter-E" transform="translate(36, 0)">
+    <!-- Barre verticale -->
+    <rect x="2" y="2" width="8" height="8" fill="#00fff7" stroke="#000" stroke-width="0.5"/>
+    <rect x="2" y="10" width="8" height="8" fill="#00fff7" stroke="#000" stroke-width="0.5"/>
+    <rect x="2" y="18" width="8" height="8" fill="#00fff7" stroke="#000" stroke-width="0.5"/>
+    <rect x="2" y="26" width="8" height="8" fill="#00fff7" stroke="#000" stroke-width="0.5"/>
+    <rect x="2" y="34" width="8" height="8" fill="#00fff7" stroke="#000" stroke-width="0.5"/>
+    <rect x="2" y="42" width="8" height="8" fill="#00fff7" stroke="#000" stroke-width="0.5"/>
+    <!-- Barres horizontales -->
+    <rect x="10" y="2" width="8" height="8" fill="#00fff7" stroke="#000" stroke-width="0.5"/>
+    <rect x="18" y="2" width="8" height="8" fill="#00fff7" stroke="#000" stroke-width="0.5"/>
+    <rect x="10" y="26" width="8" height="8" fill="#00fff7" stroke="#000" stroke-width="0.5"/>
+    <rect x="18" y="26" width="8" height="8" fill="#00fff7" stroke="#000" stroke-width="0.5"/>
+    <rect x="10" y="42" width="8" height="8" fill="#00fff7" stroke="#000" stroke-width="0.5"/>
+    <rect x="18" y="42" width="8" height="8" fill="#00fff7" stroke="#000" stroke-width="0.5"/>
+  </g>
+  
+  <!-- Lettre T -->
+  <g id="letter-T2" transform="translate(72, 0)">
+    <rect x="2" y="2" width="8" height="8" fill="#ff9400" stroke="#000" stroke-width="0.5"/>
+    <rect x="10" y="2" width="8" height="8" fill="#ff9400" stroke="#000" stroke-width="0.5"/>
+    <rect x="18" y="2" width="8" height="8" fill="#ff9400" stroke="#000" stroke-width="0.5"/>
+    <rect x="10" y="10" width="8" height="8" fill="#ff9400" stroke="#000" stroke-width="0.5"/>
+    <rect x="10" y="18" width="8" height="8" fill="#ff9400" stroke="#000" stroke-width="0.5"/>
+    <rect x="10" y="26" width="8" height="8" fill="#ff9400" stroke="#000" stroke-width="0.5"/>
+    <rect x="10" y="34" width="8" height="8" fill="#ff9400" stroke="#000" stroke-width="0.5"/>
+    <rect x="10" y="42" width="8" height="8" fill="#ff9400" stroke="#000" stroke-width="0.5"/>
+  </g>
+  
+  <!-- Lettre R -->
+  <g id="letter-R" transform="translate(108, 0)">
+    <!-- Barre verticale -->
+    <rect x="2" y="2" width="8" height="8" fill="#00ff87" stroke="#000" stroke-width="0.5"/>
+    <rect x="2" y="10" width="8" height="8" fill="#00ff87" stroke="#000" stroke-width="0.5"/>
+    <rect x="2" y="18" width="8" height="8" fill="#00ff87" stroke="#000" stroke-width="0.5"/>
+    <rect x="2" y="26" width="8" height="8" fill="#00ff87" stroke="#000" stroke-width="0.5"/>
+    <rect x="2" y="34" width="8" height="8" fill="#00ff87" stroke="#000" stroke-width="0.5"/>
+    <rect x="2" y="42" width="8" height="8" fill="#00ff87" stroke="#000" stroke-width="0.5"/>
+    <!-- Partie haute -->
+    <rect x="10" y="2" width="8" height="8" fill="#00ff87" stroke="#000" stroke-width="0.5"/>
+    <rect x="18" y="2" width="8" height="8" fill="#00ff87" stroke="#000" stroke-width="0.5"/>
+    <rect x="18" y="10" width="8" height="8" fill="#00ff87" stroke="#000" stroke-width="0.5"/>
+    <rect x="10" y="18" width="8" height="8" fill="#00ff87" stroke="#000" stroke-width="0.5"/>
+    <rect x="18" y="18" width="8" height="8" fill="#00ff87" stroke="#000" stroke-width="0.5"/>
+    <!-- Diagonale -->
+    <rect x="10" y="26" width="8" height="8" fill="#00ff87" stroke="#000" stroke-width="0.5"/>
+    <rect x="18" y="34" width="8" height="8" fill="#00ff87" stroke="#000" stroke-width="0.5"/>
+    <rect x="18" y="42" width="8" height="8" fill="#00ff87" stroke="#000" stroke-width="0.5"/>
+  </g>
+  
+  <!-- Lettre I -->
+  <g id="letter-I" transform="translate(144, 0)">
+    <rect x="10" y="2" width="8" height="8" fill="#ff206e" stroke="#000" stroke-width="0.5"/>
+    <rect x="10" y="10" width="8" height="8" fill="#ff206e" stroke="#000" stroke-width="0.5"/>
+    <rect x="10" y="18" width="8" height="8" fill="#ff206e" stroke="#000" stroke-width="0.5"/>
+    <rect x="10" y="26" width="8" height="8" fill="#ff206e" stroke="#000" stroke-width="0.5"/>
+    <rect x="10" y="34" width="8" height="8" fill="#ff206e" stroke="#000" stroke-width="0.5"/>
+    <rect x="10" y="42" width="8" height="8" fill="#ff206e" stroke="#000" stroke-width="0.5"/>
+  </g>
+  
+  <!-- Lettre S -->
+  <g id="letter-S" transform="translate(170, 0)">
+    <!-- Haut -->
+    <rect x="2" y="2" width="8" height="8" fill="#ffe600" stroke="#000" stroke-width="0.5"/>
+    <rect x="10" y="2" width="8" height="8" fill="#ffe600" stroke="#000" stroke-width="0.5"/>
+    <rect x="18" y="2" width="8" height="8" fill="#ffe600" stroke="#000" stroke-width="0.5"/>
+    <rect x="2" y="10" width="8" height="8" fill="#ffe600" stroke="#000" stroke-width="0.5"/>
+    <!-- Milieu -->
+    <rect x="2" y="18" width="8" height="8" fill="#ffe600" stroke="#000" stroke-width="0.5"/>
+    <rect x="10" y="18" width="8" height="8" fill="#ffe600" stroke="#000" stroke-width="0.5"/>
+    <rect x="18" y="18" width="8" height="8" fill="#ffe600" stroke="#000" stroke-width="0.5"/>
+    <rect x="10" y="26" width="8" height="8" fill="#ffe600" stroke="#000" stroke-width="0.5"/>
+    <rect x="18" y="26" width="8" height="8" fill="#ffe600" stroke="#000" stroke-width="0.5"/>
+    <!-- Bas -->
+    <rect x="18" y="34" width="8" height="8" fill="#ffe600" stroke="#000" stroke-width="0.5"/>
+    <rect x="2" y="42" width="8" height="8" fill="#ffe600" stroke="#000" stroke-width="0.5"/>
+    <rect x="10" y="42" width="8" height="8" fill="#ffe600" stroke="#000" stroke-width="0.5"/>
+    <rect x="18" y="42" width="8" height="8" fill="#ffe600" stroke="#000" stroke-width="0.5"/>
+  </g>
+</svg>

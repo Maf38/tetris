@@ -1,20 +1,32 @@
-.next-pieces-row {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  margin-bottom: 24px;
+:host {
+  display: block;
 }
 
-.preview-grid-4x2 {
-  background: #111;
-  padding: 8px;
-  border-radius: 8px;
+.next-pieces-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.preview-piece-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 8px 0;
+  
+  &:not(:last-child) {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  }
+}
+
+.preview-grid-transparent {
   display: flex;
   flex-direction: column;
   gap: 0;
-  box-shadow: 0 2px 8px #0008;
-  width: 84px; /* 4*20px + 3*1px border + padding */
-  height: 44px; /* 2*20px + 1*1px border + padding */
+  min-height: 60px;
+  align-items: center;
+  justify-content: center;
 }
 
 .preview-row {
@@ -23,13 +35,20 @@
 }
 
 .preview-cell {
-  width: 20px;
-  height: 20px;
-  border: 1px solid #fff;
+  width: 16px;
+  height: 16px;
   background: transparent;
   box-sizing: border-box;
   transition: background 0.2s;
 }
+
 .preview-cell.filled {
-  /* La couleur de fond est gérée inline */
+  /* La couleur de fond et border sont gérées inline */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.empty-placeholder {
+  color: #444;
+  font-size: 24px;
+  font-family: 'Press Start 2P', monospace;
 }

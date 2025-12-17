@@ -2,14 +2,33 @@
          (pauseGame)="pauseGame()"
          (restartGame)="restartGame()"
 ></app-menu>
-<app-score-board 
-    [score] = "game.score()"
-    [level]="game.level()"
-    [lines]="game.lines()"
-></app-score-board>
 
-<app-next-pieces-preview [nextPieces]="game.nextPieces()"></app-next-pieces-preview>
+<div class="game-container">
+  <!-- Zone gauche: Hold -->
+  <div class="side-panel left-panel">
+    <div class="panel-title">HOLD</div>
+    <div class="hold-area">
+      <!-- Feature à venir -->
+    </div>
+  </div>
 
-<app-game-board></app-game-board>
+  <!-- Zone centrale: Game Board dans un contour stylisé -->
+  <div class="play-area">
+    <app-game-board></app-game-board>
+  </div>
+
+  <!-- Zone droite: Next & Score -->
+  <div class="side-panel right-panel">
+    <div class="panel-title">NEXT</div>
+    <app-next-pieces-preview [nextPieces]="game.nextPieces()"></app-next-pieces-preview>
+    
+    <div class="panel-title" style="margin-top: 20px;">SCORE</div>
+    <app-score-board 
+        [score]="game.score()"
+        [level]="game.level()"
+        [lines]="game.lines()"
+    ></app-score-board>
+  </div>
+</div>
 
 <app-controls></app-controls>
