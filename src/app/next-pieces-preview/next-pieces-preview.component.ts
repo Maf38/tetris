@@ -11,4 +11,8 @@ import { Piece } from '../../models/piece.model';
 })
 export class NextPiecesPreviewComponent {
   @Input() nextPieces: (Piece | undefined)[] = [undefined, undefined, undefined, undefined];
+  
+  get reversedNextPieces(): (Piece | undefined)[] {
+    return [...this.nextPieces].reverse();
+  }
 }

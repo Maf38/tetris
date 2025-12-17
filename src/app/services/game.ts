@@ -12,6 +12,8 @@ import { SCORE_TABLE } from '../../models/score-table';
 export class Game {
   currentPiece = signal<Piece | null>(null);
   nextPieces = signal<(Piece | undefined)[]>([undefined, undefined, undefined, undefined]);
+  holdPiece = signal<Piece | null>(null);
+  canHold = signal(true);
   board = signal<CellModel[][]>([]);
   score = signal(0);
   level = signal(1);
@@ -54,6 +56,8 @@ export class Game {
     this.gameOver.set(false);
     this.isStarted.set(false);
     this.currentPiece.set(null);
+    this.holdPiece.set(null);
+    this.canHold.set(true);
     // Initialise la file de 4 pièces
     const queue: Piece[] = [];
     for (let i = 0; i < 4; i++) {
@@ -103,8 +107,44 @@ export class Game {
     // Décale la file et ajoute une nouvelle pièce en position 0
     const newQueue = [this.generateRandomPiece(), queue[0], queue[1], queue[2]];
     this.nextPieces.set(newQueue);
+    // Réactive la possibilité de hold pour la nouvelle pièce
+    this.canHold.set(true);
     console.log('✨ Current piece:', this.currentPiece());
     console.log('⏭️  Next pieces:', this.nextPieces());
+  }
+
+  holdCurrentPiece() {
+    // Ne peut pas hold si déjà utilisé pour cette pièce
+    if (!this.canHold()) {
+      console.log('⛔ Cannot hold - already used for this piece');
+      return;
+    }
+
+    const current = this.currentPiece();
+    if (!current) {
+      console.log('⛔ No current piece to hold');
+      return;
+    }
+
+    const held = this.holdPiece();
+    
+    // Sauvegarde la pièce courante pour la mettre en hold
+    const pieceToHold = { ...current, x: 0, y: 0, rotation: 0 };
+    
+    if (held) {
+      // Échange : la pièce en hold devient la pièce courante (garde la position actuelle)
+      this.currentPiece.set({ ...held, x: current.x, y: current.y, rotation: 0 });
+      console.log('🔄 Swapped current piece with held piece');
+    } else {
+      // Première fois : prend la prochaine pièce (qui va spawn à une nouvelle position)
+      this.spawnPiece();
+      console.log('📦 Held piece, spawned next');
+    }
+
+    // Place l'ancienne pièce courante en hold
+    this.holdPiece.set(pieceToHold);
+    // Désactive hold jusqu'à la prochaine pièce
+    this.canHold.set(false);
   }
 
   canMovePiece(deltaX: number, deltaY: number, shape: number[][]): boolean {
@@ -183,6 +223,31 @@ export class Game {
       this.lockPiece();
       return false;
     }
+  }
+
+  hardDrop(): void {
+    const piece = this.currentPiece();
+    if (!piece) {
+      console.log('⚠️ No current piece for hard drop');
+      return;
+    }
+
+    // Trouve la position la plus basse possible
+    let dropDistance = 0;
+    while (this.canMovePiece(0, dropDistance + 1, piece.shape)) {
+      dropDistance++;
+    }
+
+    // Déplace la pièce instantanément
+    if (dropDistance > 0) {
+      this.currentPiece.set({ ...piece, y: piece.y + dropDistance });
+      console.log('⚡ Hard drop: moved', dropDistance, 'rows down');
+      // Ajoute des points bonus pour le hard drop
+      this.addScore(dropDistance * 2);
+    }
+
+    // Lock la pièce immédiatement
+    this.lockPiece();
   }
 
   lockPiece() {

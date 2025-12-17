@@ -1,0 +1,22 @@
+<div class="hold-container">
+  <div class="hold-grid">
+    <ng-container *ngIf="holdPiece">
+      <ng-container *ngFor="let row of holdPiece.shape; let y = index">
+        <div class="hold-row">
+          <ng-container *ngFor="let cell of row; let x = index">
+            <div class="hold-cell" 
+                 [class.filled]="cell"
+                 [style.background]="cell ? holdPiece.color : 'transparent'"
+                 [style.border]="cell ? '1px solid rgba(0,0,0,0.3)' : 'none'">
+            </div>
+          </ng-container>
+        </div>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="!holdPiece">
+      <div class="empty-hold">
+        <span>EMPTY</span>
+      </div>
+    </ng-container>
+  </div>
+</div>

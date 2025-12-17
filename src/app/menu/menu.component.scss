@@ -14,6 +14,28 @@
   align-items: center;
 }
 
+.logo-image {
+  width: 420px;
+  height: auto;
+  animation: logoFloat 3s ease-in-out infinite;
+  filter: drop-shadow(0 4px 12px rgba(215, 38, 255, 0.6));
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 6px 20px rgba(215, 38, 255, 0.9));
+  }
+}
+
+@keyframes logoFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
 .menu-items {
   display: flex;
   list-style: none;

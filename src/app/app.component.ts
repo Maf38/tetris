@@ -1,6 +1,7 @@
 import { Component, signal,HostListener} from '@angular/core';
 import { MenuComponent } from './menu/menu.component'; 
 import { ScoreBoardComponent } from './score-board/score-board.component';
+import { HoldPieceComponent } from './hold-piece/hold-piece.component';
 // import { NextPieceComponent } from './next-piece/next-piece.component';
 import { NextPiecesPreviewComponent } from './next-pieces-preview/next-pieces-preview.component';
 import { GameBoardComponent } from './game-board/game-board.component';
@@ -30,6 +31,7 @@ function getRandomPiece(): Piece {
   imports: [
     MenuComponent,
     ScoreBoardComponent,
+    HoldPieceComponent,
     // NextPieceComponent,
     NextPiecesPreviewComponent,
     GameBoardComponent,
@@ -71,9 +73,16 @@ export class AppComponent  {
 
   @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent) {
-    if (['ArrowLeft', 'ArrowRight', 'ArrowDown', 'ArrowUp'].includes(event.key)) {
+    if (['ArrowLeft', 'ArrowRight', 'ArrowDown', 'ArrowUp', 'c', 'C', 'Shift', ' '].includes(event.key)) {
       event.preventDefault(); // Empêche le scroll lors du déplacement des pièces
     }
+    
+    // Hold peut être utilisé même en pause
+    if (event.key === 'c' || event.key === 'C' || event.key === 'Shift') {
+      this.game.holdCurrentPiece();
+      return;
+    }
+    
     if (this.game.isPaused() || this.game.gameOver()) return;
     const piece = this.game.currentPiece();
     if (!piece) return;
@@ -97,6 +106,9 @@ export class AppComponent  {
           const rotatedShape = this.game.rotatePiece(piece.shape);
           this.game.currentPiece.set({ ...piece, shape: rotatedShape });
         }
+        break;
+      case ' ':
+        this.game.hardDrop();
         break;
     }
   }
